@@ -11,6 +11,7 @@ import TodoToolBar from '../TodoToolBar';
 const AppWrapper = styled.div`
   width: 100%;
   max-height: 100vh;
+  height: 100vh;
   padding: 28px;
   background-color: #f5f5f5;
 
@@ -20,12 +21,18 @@ const AppWrapper = styled.div`
 
   *:not(:first-child, :last-child) {
     p {
-      margin-left: 18px;
-      font-size: 30px;
+      margin-left: 14px;
+      font-size: 26px;
     }
   }
 
   @media (min-width: 576px) {
+    *:not(:first-child, :last-child) {
+      p {
+        margin-left: 18px;
+        font-size: 30px;
+      }
+    }
   }
 
   @media (min-width: 740px) {

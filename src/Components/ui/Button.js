@@ -2,11 +2,13 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const StyledButton = styled.button`
-  height: 32px;
-  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
   margin: 0 4px;
   border-radius: 4px;
-  border: none;
+  border: 1px solid white;
   color: #545454;
   background-color: white;
   cursor: pointer;
@@ -19,7 +21,11 @@ const StyledButton = styled.button`
     &:active {
       border: 1px solid darkred;
     }
-  `}
+  `};
+  
+  @media (min-width: 576px) {
+    padding: 8px;
+  }
 `;
 
 const Button = ({ children, onClick, isActive }) => {

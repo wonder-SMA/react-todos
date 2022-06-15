@@ -8,15 +8,22 @@ import { Item, Layer } from '../../styles/Mixins';
 import Button from '../ui';
 
 const StyledTodoToolBar = styled.div`
-  height: 54px;
+  height: 78px;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
 
   ${Item()}
   p {
+    width: 100%;
+    text-align: center;
     margin: 0 4px;
-    font-size: 18px;
+    font-size: 16px;
+  }
+
+  div {
+    display: flex;
   }
 
   &:before {
@@ -25,6 +32,25 @@ const StyledTodoToolBar = styled.div`
 
   &:after {
     ${Layer({ width: '98%', bottom: '-12px', left: '1%' })}
+  }
+
+  @media (min-width: 576px) {
+    height: 54px;
+    justify-content: space-between;
+
+    div {
+      width: 66%;
+      display: flex;
+    }
+
+    p {
+      width: auto;
+      font-size: 18px;
+    }
+
+    button:last-child {
+      margin-left: auto;
+    }
   }
 `;
 
@@ -42,8 +68,8 @@ const TodoToolBar = observer(() => {
         <Button onClick={onClick} isActive={store.filterValue}>All</Button>
         <Button onClick={onClick} isActive={store.filterValue}>Active</Button>
         <Button onClick={onClick} isActive={store.filterValue}>Completed</Button>
+        <Button onClick={() => store.clearCompletedTodos()} isActive="active">Clear completed</Button>
       </div>
-      <Button onClick={() => store.clearCompletedTodos()} isActive="active">Clear completed</Button>
     </StyledTodoToolBar>
   );
 });

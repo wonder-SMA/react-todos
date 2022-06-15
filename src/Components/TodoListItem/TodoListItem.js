@@ -37,7 +37,7 @@ const TodoListItem = observer(({ todo }) => {
     <StyledTodoListItem isMarked={isMarked}>
       <Icon
         path={isMarked ? mdiCheckboxMarkedCircleOutline : mdiCheckboxBlankCircleOutline}
-        size={2}
+        size={window.matchMedia('(min-width: 576px)').matches ? 2 : 1.5}
         color="#cadeda"
         onClick={setCheckboxHandler}
       />

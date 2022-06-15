@@ -20,7 +20,7 @@ const TodoHeader = ({ isClosed, closeListHandler }) => {
     <StyledTodoHeader>
       <Icon
         path={isClosed ? mdiChevronRight : mdiChevronDown}
-        size={2}
+        size={window.matchMedia("(min-width: 576px)").matches ? 2 : 1.5}
         color="#545454"
         onClick={closeListHandler}
       />

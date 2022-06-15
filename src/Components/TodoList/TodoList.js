@@ -6,11 +6,22 @@ import { StoreContext } from '../../index';
 import TodoListItem from '../TodoListItem';
 
 const StyledTodoList = styled.ul`
+  max-height: calc(100vh - 340px);
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
   ${props => props?.isClosed && css`
     ul {
       display: none;
     }
-  `}
+  `};
+
+  @media (min-width: 576px) {
+    max-height: calc(100vh - 364px);
+  }
 `;
 
 const TodoList = observer(({ isClosed }) => {
@@ -18,11 +29,9 @@ const TodoList = observer(({ isClosed }) => {
 
   return (
     <StyledTodoList isActive={true} isClosed={isClosed}>
-      <ul>
-        {store.todos.map((todo) =>
-          <TodoListItem key={todo} todo={todo} />
-        )}
-      </ul>
+      {store.todos.map((todo) =>
+        <TodoListItem key={todo} todo={todo} />
+      )}
     </StyledTodoList>
   );
 });

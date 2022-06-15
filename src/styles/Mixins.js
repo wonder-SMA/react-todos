@@ -2,7 +2,6 @@ import { css } from 'styled-components';
 
 export const Item = () => css`
   display: flex;
-  flex-wrap: nowrap;
   align-items: center;
   padding: 0 10px;
   margin-bottom: 1px;
