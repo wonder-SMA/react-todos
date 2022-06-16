@@ -8,7 +8,7 @@ import { StoreContext } from '../../index';
 import { Item, overflowX } from '../../styles/Mixins';
 
 const StyledTodoListItem = styled.li`
-  height: 78px;
+  min-height: 78px;
 
   ${overflowX()}
   ${Item()}

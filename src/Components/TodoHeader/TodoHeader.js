@@ -6,7 +6,7 @@ import { mdiChevronDown, mdiChevronRight } from '@mdi/js';
 import { Item, overflowX } from '../../styles/Mixins';
 
 const StyledTodoHeader = styled.div`
-  height: 78px;
+  min-height: 78px;
 
   ${overflowX()}
   ${Item()}

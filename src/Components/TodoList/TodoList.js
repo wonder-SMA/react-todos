@@ -10,15 +10,14 @@ const StyledTodoList = styled.ul`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.1);
 
   &::-webkit-scrollbar {
     width: 0;
   }
 
   ${props => props?.isClosed && css`
-    ul {
-      display: none;
-    }
+    display: none;
   `};
 
   @media (min-width: 576px) {
