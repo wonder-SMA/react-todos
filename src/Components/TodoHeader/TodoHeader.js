@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import Icon from '@mdi/react';
 import { mdiChevronDown, mdiChevronRight } from '@mdi/js';
 
-import { Item } from '../../styles/Mixins';
+import { Item, overflowX } from '../../styles/Mixins';
 
 const StyledTodoHeader = styled.div`
   height: 78px;
 
+  ${overflowX()}
   ${Item()}
+  
   p {
     font-style: italic;
     color: #bdbebd;
@@ -20,7 +22,7 @@ const TodoHeader = ({ isClosed, closeListHandler }) => {
     <StyledTodoHeader>
       <Icon
         path={isClosed ? mdiChevronRight : mdiChevronDown}
-        size={window.matchMedia("(min-width: 576px)").matches ? 2 : 1.5}
+        size={window.matchMedia('(min-width: 576px)').matches ? 2 : 1.5}
         color="#545454"
         onClick={closeListHandler}
       />

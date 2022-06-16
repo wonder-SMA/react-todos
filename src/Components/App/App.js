@@ -24,6 +24,7 @@ const AppWrapper = styled.div`
     p {
       margin-left: 14px;
       font-size: 26px;
+      white-space: nowrap
     }
   }
 
@@ -32,6 +33,7 @@ const AppWrapper = styled.div`
       p {
         margin-left: 18px;
         font-size: 30px;
+        white-space: nowrap
       }
     }
   }

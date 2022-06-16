@@ -1,5 +1,13 @@
 import { css } from 'styled-components';
 
+export const overflowX = () => css`
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 0;
+  }
+`;
+
 export const Item = () => css`
   display: flex;
   align-items: center;

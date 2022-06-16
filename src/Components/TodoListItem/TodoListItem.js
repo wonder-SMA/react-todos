@@ -5,16 +5,12 @@ import Icon from '@mdi/react';
 import { mdiCheckboxBlankCircleOutline, mdiCheckboxMarkedCircleOutline } from '@mdi/js';
 
 import { StoreContext } from '../../index';
-import { Item } from '../../styles/Mixins';
+import { Item, overflowX } from '../../styles/Mixins';
 
 const StyledTodoListItem = styled.li`
   height: 78px;
-  overflow-x: auto;
 
-  &::-webkit-scrollbar {
-    height: 0;
-  }
-
+  ${overflowX()}
   ${Item()}
 
   ${props => props?.isMarked && css`
