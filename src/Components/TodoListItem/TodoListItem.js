@@ -9,6 +9,11 @@ import { Item } from '../../styles/Mixins';
 
 const StyledTodoListItem = styled.li`
   height: 78px;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 0;
+  }
 
   ${Item()}
 

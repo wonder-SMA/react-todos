@@ -7,6 +7,8 @@ import TodoListItem from '../TodoListItem';
 
 const StyledTodoList = styled.ul`
   max-height: calc(100vh - 340px);
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
 
   &::-webkit-scrollbar {

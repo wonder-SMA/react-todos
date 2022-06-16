@@ -16,6 +16,7 @@ const AppWrapper = styled.div`
   background-color: #f5f5f5;
 
   svg {
+    flex-shrink: 0;
     cursor: pointer;
   }
 
