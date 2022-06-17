@@ -44,7 +44,7 @@ const AppWrapper = styled.div`
   }
 `;
 
-function App() {
+const App = () => {
   const { store } = useContext(StoreContext);
   const [isClosed, setIsClosed] = useState(false);
 

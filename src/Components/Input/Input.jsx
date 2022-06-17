@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from '../ui';
 
 const StyledInput = styled.div`
-  display: flex;  
+  display: flex;
   justify-content: center;
   align-items: center;
 

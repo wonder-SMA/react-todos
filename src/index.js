@@ -22,9 +22,7 @@ const Global = createGlobalStyle`
     display: none;
   }
 
-  ul,
-  li,
-  p {
+  ul, li, h1, p {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -33,7 +31,7 @@ const Global = createGlobalStyle`
 
 export const StoreContext = createContext(null);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') || document.createElement('div'));
 
 root.render(
   <StoreContext.Provider value={{
