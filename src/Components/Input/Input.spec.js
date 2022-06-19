@@ -16,7 +16,7 @@ describe('Input', () => {
   });
   it('Should render with button named Add todo', () => {
     render(<Input />);
-    expect(screen.getByRole('button', /Add todo/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Add todo/ })).toBeInTheDocument();
   });
   it('Should render with addTodoHandler callback, which works correctly', async () => {
     const mockCallback = jest.fn();

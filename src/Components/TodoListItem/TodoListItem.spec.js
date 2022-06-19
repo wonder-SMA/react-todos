@@ -1,22 +1,17 @@
 import React from 'react';
 import { mdiCheckboxBlankCircleOutline, mdiCheckboxMarkedCircleOutline } from '@mdi/js';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { StoreContext } from '../../index';
-import TodosStore from '../../store';
+import { renderWithMobx } from '../helpers/renderWithMobx';
 import TodoListItem from './';
 
 describe('TodoListItem', () => {
   it('Should render with mdiCheckboxBlankCircleOutline Icon', () => {
-    const { container } = render(
-      <StoreContext.Provider value={{
-        store: new TodosStore()
-      }}>
-        <TodoListItem
-          todo={'Buy groceries'}
-        />
-      </StoreContext.Provider>
+    const { container } = renderWithMobx(
+      <TodoListItem
+        todo={'Buy groceries'}
+      />
     );
     expect(container.firstChild).toMatchInlineSnapshot(`
     <li
@@ -39,38 +34,26 @@ describe('TodoListItem', () => {
     `);
   });
   it('Should render with text', () => {
-    render(
-      <StoreContext.Provider value={{
-        store: new TodosStore()
-      }}>
-        <TodoListItem
-          todo={'Buy groceries'}
-        />
-      </StoreContext.Provider>
+    renderWithMobx(
+      <TodoListItem
+        todo={'Buy groceries'}
+      />
     );
     expect(screen.getByText('Buy groceries')).toBeInTheDocument();
   });
   it('Should render with text without the text-decoration property equals line-through', () => {
-    render(
-      <StoreContext.Provider value={{
-        store: new TodosStore()
-      }}>
-        <TodoListItem
-          todo={'Buy groceries'}
-        />
-      </StoreContext.Provider>
+    renderWithMobx(
+      <TodoListItem
+        todo={'Buy groceries'}
+      />
     );
     expect(screen.getByText('Buy groceries')).not.toHaveStyle({ textDecoration: 'line-through' });
   });
   it('Should render with mdiCheckboxMarkedCircleOutline Icon, which appears after clicking', async () => {
-    render(
-      <StoreContext.Provider value={{
-        store: new TodosStore()
-      }}>
-        <TodoListItem
-          todo={'Buy groceries'}
-        />
-      </StoreContext.Provider>
+    renderWithMobx(
+      <TodoListItem
+        todo={'Buy groceries'}
+      />
     );
     const presentation = screen.getByRole('presentation');
     await userEvent.click(presentation);
@@ -88,14 +71,10 @@ describe('TodoListItem', () => {
     `);
   });
   it('Should render with text with the text-decoration property equals line-through, which appears after clicking', async () => {
-    render(
-      <StoreContext.Provider value={{
-        store: new TodosStore()
-      }}>
-        <TodoListItem
-          todo={'Buy groceries'}
-        />
-      </StoreContext.Provider>
+    renderWithMobx(
+      <TodoListItem
+        todo={'Buy groceries'}
+      />
     );
     const presentation = screen.getByRole('presentation');
     await userEvent.click(presentation);

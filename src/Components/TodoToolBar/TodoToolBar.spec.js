@@ -1,38 +1,31 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithMobx } from '../helpers/renderWithMobx';
 
-import { StoreContext } from '../../index';
-import TodosStore from '../../store';
-import Input from '../Input';
 import TodoToolBar from './';
 
 describe('TodoToolBar', () => {
   it('Should render with text', () => {
-    render(
-      <StoreContext.Provider value={{
-        store: new TodosStore()
-      }}>
-        <TodoToolBar />
-      </StoreContext.Provider>
-    );
+    renderWithMobx(<TodoToolBar />);
     expect(screen.getByText('0 items left')).toBeInTheDocument();
   });
   it('Should render with button named All with the border property equals 1px solid darkred', () => {
-    render(<Input />);
-    const button = screen.getByRole('button', /All/i);
+    renderWithMobx(<TodoToolBar />);
+    screen.debug();
+    const button = screen.getByRole('button', { name: /All/ });
     expect(button).toBeInTheDocument();
     expect(button).toHaveStyle({ border: '1px solid darkred' });
   });
   it('Should render with button named Active', () => {
-    render(<Input />);
-    expect(screen.getByRole('button', /Active/i)).toBeInTheDocument();
+    renderWithMobx(<TodoToolBar />);
+    expect(screen.getByRole('button', { name: /Active/ })).toBeInTheDocument();
   });
   it('Should render with button named Completed', () => {
-    render(<Input />);
-    expect(screen.getByRole('button', /Completed/i)).toBeInTheDocument();
+    renderWithMobx(<TodoToolBar />);
+    expect(screen.getByRole('button', { name: /Completed/ })).toBeInTheDocument();
   });
   it('Should render with button named Clear completed', () => {
-    render(<Input />);
-    expect(screen.getByRole('button', /Clear completed/i)).toBeInTheDocument();
+    renderWithMobx(<TodoToolBar />);
+    expect(screen.getByRole('button', { name: /Clear completed/ })).toBeInTheDocument();
   });
 });

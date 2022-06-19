@@ -14,31 +14,31 @@ beforeAll(async () => {
 });
 
 describe('h1', () => {
-  test('exits', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('exits', async () => {
     const text = await page.$eval('div > div > div:nth-child(1) > h1', el => el.textContent);
     expect(text).toBe('todos');
   }, 5000);
 });
 
 describe('input', () => {
-  test('loads correctly', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('loads correctly', async () => {
     const isInput = await page.$eval('div > div > div:nth-child(2) > input[placeholder=\'Введите задачу\']', el => !!el);
     expect(isInput).toBe(true);
   }, 5000);
 
   test('works correctly', async () => {
-    let page = await browser.newPage();
-    await page.goto('http://localhost:3000/');
-    await page.setViewport({ width: 1920, height: 1080 });
-
     await page.click('div > div > div:nth-child(2) > input');
     await page.keyboard.type('React');
     const text = await page.$eval('div > div > div:nth-child(2) > input', el => el['value']);
@@ -47,20 +47,18 @@ describe('input', () => {
 });
 
 describe('the button named Add todo', () => {
-  test('loads correctly', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('loads correctly', async () => {
     const text = await page.$eval('div > div > div:nth-child(2) > button', el => el.textContent);
     expect(text).toBe('Add todo');
   }, 5000);
 
   test('adds text to the list', async () => {
-    let page = await browser.newPage();
-    await page.goto('http://localhost:3000/');
-    await page.setViewport({ width: 1920, height: 1080 });
-
     await page.click('div > div > div:nth-child(2) > input');
     await page.keyboard.type('React');
 
@@ -72,31 +70,31 @@ describe('the button named Add todo', () => {
 });
 
 describe('the paragraph', () => {
-  test('exits', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('exits', async () => {
     const text = await page.$eval('div > div > div:nth-child(3) > p', el => el.textContent);
     expect(text).toBe('What needs to be done?');
   }, 5000);
 });
 
 describe('the down-arrow', () => {
-  test('loads correctly', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('loads correctly', async () => {
     const value = await page.$eval('div > div > div:nth-child(3) > svg > path', el => el.getAttribute('d'));
     expect(value).toBe(mdiChevronDown);
   }, 5000);
 
   test('changes to right-arrow when clicking', async () => {
-    let page = await browser.newPage();
-    await page.goto('http://localhost:3000/');
-    await page.setViewport({ width: 1920, height: 1080 });
-
     await page.click('div > div > div:nth-child(3) > svg > path');
 
     const value = await page.$eval('div > div > div:nth-child(3) > svg > path', el => el.getAttribute('d'));
@@ -105,11 +103,13 @@ describe('the down-arrow', () => {
 });
 
 describe('the checkbox icon', () => {
-  test('is blank when adding text', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('is blank when adding text', async () => {
     await page.click('div > div > div:nth-child(2) > input');
     await page.keyboard.type('React');
 
@@ -120,10 +120,6 @@ describe('the checkbox icon', () => {
   }, 5000);
 
   test('changes to marked icon when clicking', async () => {
-    let page = await browser.newPage();
-    await page.goto('http://localhost:3000/');
-    await page.setViewport({ width: 1920, height: 1080 });
-
     await page.click('div > div > div:nth-child(2) > input');
     await page.keyboard.type('React');
 
@@ -136,11 +132,13 @@ describe('the checkbox icon', () => {
 });
 
 describe('text', () => {
-  test('turns stricken through when clicking the checkbox icon', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('turns stricken through when clicking the checkbox icon', async () => {
     await page.click('div > div > div:nth-child(2) > input');
     await page.keyboard.type('React');
 
@@ -153,11 +151,13 @@ describe('text', () => {
 });
 
 describe('the information about items left', () => {
-  test('displays correctly', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('displays correctly', async () => {
     const p = 'div > div > div:nth-child(5) > p';
 
     const text_0 = await page.$eval(p, el => el.textContent);
@@ -179,11 +179,13 @@ describe('the information about items left', () => {
 });
 
 describe('the button named All', () => {
-  test('loads correctly', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('loads correctly', async () => {
     const p = 'div > div > div:nth-child(5) > div > button:nth-child(1)';
 
     const text = await page.$eval(p, el => el.textContent);
@@ -195,20 +197,18 @@ describe('the button named All', () => {
 });
 
 describe('the button named Active', () => {
-  test('loads correctly', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('loads correctly', async () => {
     const text = await page.$eval('div > div > div:nth-child(5) > div > button:nth-child(2)', el => el.textContent);
     expect(text).toBe('Active');
   }, 5000);
 
   test('works correctly', async () => {
-    let page = await browser.newPage();
-    await page.goto('http://localhost:3000/');
-    await page.setViewport({ width: 1920, height: 1080 });
-
     await page.click('div > div > div:nth-child(2) > input');
     await page.keyboard.type('React');
 
@@ -222,20 +222,18 @@ describe('the button named Active', () => {
 });
 
 describe('the button named Completed', () => {
-  test('loads correctly', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('loads correctly', async () => {
     const text = await page.$eval('div > div > div:nth-child(5) > div > button:nth-child(3)', el => el.textContent);
     expect(text).toBe('Completed');
   }, 5000);
 
   test('works correctly', async () => {
-    let page = await browser.newPage();
-    await page.goto('http://localhost:3000/');
-    await page.setViewport({ width: 1920, height: 1080 });
-
     await page.click('div > div > div:nth-child(2) > input');
     await page.keyboard.type('React');
 
@@ -249,20 +247,18 @@ describe('the button named Completed', () => {
 });
 
 describe('the button named Clear completed', () => {
-  test('loads correctly', async () => {
-    let page = await browser.newPage();
+  beforeEach(async () => {
+    page = await browser.newPage();
     await page.goto('http://localhost:3000/');
     await page.setViewport({ width: 1920, height: 1080 });
+  });
 
+  test('loads correctly', async () => {
     const text = await page.$eval('div > div > div:nth-child(5) > div > button:nth-child(4)', el => el.textContent);
     expect(text).toBe('Clear completed');
   }, 5000);
 
   test('works correctly', async () => {
-    let page = await browser.newPage();
-    await page.goto('http://localhost:3000/');
-    await page.setViewport({ width: 1920, height: 1080 });
-
     await page.click('div > div > div:nth-child(2) > input');
     await page.keyboard.type('React');
 

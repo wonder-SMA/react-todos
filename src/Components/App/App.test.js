@@ -1,19 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 
-import { StoreContext } from '../../index';
-import TodosStore from '../../store';
+import { renderWithMobx } from '../helpers/renderWithMobx';
 import App from './';
 
 describe('App', () => {
   test('App snapshot didn\'t change', () => {
-    const component = render(
-      <StoreContext.Provider value={{
-        store: new TodosStore()
-      }}>
-        <App />
-      </StoreContext.Provider>
-    );
+    const component = renderWithMobx(<App />);
     expect(component).toMatchSnapshot();
   });
 });
