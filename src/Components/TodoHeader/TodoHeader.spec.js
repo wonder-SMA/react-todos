@@ -27,7 +27,7 @@ describe('TodoHeader', () => {
     </svg>
     `);
   });
-  it('Should render with closeListHandler callback, which works correctly', () => {
+  it('Should render with closeListHandler callback, which works correctly', async () => {
     const mockCallback = jest.fn();
     render(
       <TodoHeader
@@ -35,11 +35,11 @@ describe('TodoHeader', () => {
         closeListHandler={mockCallback}
       />
     );
-    userEvent.click(screen.getByRole('presentation'));
+    await userEvent.click(screen.getByRole('presentation'));
     expect(mockCallback).toHaveBeenCalled();
     expect(mockCallback).toHaveBeenCalledTimes(1);
   });
-  it('Should render with mdiChevronRight Icon, which appears if isClosed equals true', () => {
+  it('Should render with mdiChevronRight Icon, which appears if isClosed equals true', async () => {
     const mockCallback = jest.fn();
     render(
       <TodoHeader
@@ -48,7 +48,7 @@ describe('TodoHeader', () => {
       />
     );
     const presentation = screen.getByRole('presentation');
-    userEvent.click(presentation);
+    await userEvent.click(presentation);
     expect(presentation).toMatchInlineSnapshot(`
     <svg
       role="presentation"

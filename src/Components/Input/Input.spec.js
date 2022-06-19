@@ -9,16 +9,16 @@ describe('Input', () => {
     render(<Input />);
     expect(screen.getByRole('textbox')).toHaveAttribute('placeholder', 'Введите задачу');
   });
-  it('Should render with controlled input element, which works correctly', () => {
+  it('Should render with controlled input element, which works correctly', async () => {
     render(<Input />);
-    userEvent.type(screen.getByRole('textbox'), 'React');
+    await userEvent.type(screen.getByRole('textbox'), 'React');
     expect(screen.getByDisplayValue('React')).toBeInTheDocument();
   });
-  it('Should render with button, which name equals Add todo', () => {
+  it('Should render with button named Add todo', () => {
     render(<Input />);
     expect(screen.getByRole('button', /Add todo/i)).toBeInTheDocument();
   });
-  it('Should render with addTodoHandler callback, which works correctly', () => {
+  it('Should render with addTodoHandler callback, which works correctly', async () => {
     const mockCallback = jest.fn();
     render(
       <Input
@@ -26,12 +26,12 @@ describe('Input', () => {
           mockCallback(todo);
         }} />
     );
-    userEvent.type(screen.getByRole('textbox'), 'React');
-    userEvent.click(screen.getByRole('button'));
+    await userEvent.type(screen.getByRole('textbox'), 'React');
+    await userEvent.click(screen.getByRole('button'));
     expect(mockCallback).toHaveBeenCalled();
     expect(mockCallback.mock.calls[0][0]).toBe('React');
   });
-  it('Should be cleared after clicking the button', () => {
+  it('Should be cleared after clicking the button', async () => {
     const mockCallback = jest.fn();
     render(
       <Input
@@ -40,8 +40,8 @@ describe('Input', () => {
         }} />
     );
     const textbox = screen.getByRole('textbox');
-    userEvent.type(textbox, 'React');
-    userEvent.click(screen.getByRole('button'));
+    await userEvent.type(textbox, 'React');
+    await userEvent.click(screen.getByRole('button'));
     expect(textbox).toHaveDisplayValue('');
   });
 });

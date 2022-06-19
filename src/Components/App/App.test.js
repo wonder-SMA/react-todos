@@ -6,7 +6,7 @@ import TodosStore from '../../store';
 import App from './';
 
 describe('App', () => {
-  it('App snapshot didn\'t change', () => {
+  test('App snapshot didn\'t change', () => {
     const component = render(
       <StoreContext.Provider value={{
         store: new TodosStore()

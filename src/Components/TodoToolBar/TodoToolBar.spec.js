@@ -17,21 +17,21 @@ describe('TodoToolBar', () => {
     );
     expect(screen.getByText('0 items left')).toBeInTheDocument();
   });
-  it('Should render with button with the border property equals 1px solid darkred, which name equals All', () => {
+  it('Should render with button named All with the border property equals 1px solid darkred', () => {
     render(<Input />);
     const button = screen.getByRole('button', /All/i);
     expect(button).toBeInTheDocument();
     expect(button).toHaveStyle({ border: '1px solid darkred' });
   });
-  it('Should render with button, which name equals Active', () => {
+  it('Should render with button named Active', () => {
     render(<Input />);
     expect(screen.getByRole('button', /Active/i)).toBeInTheDocument();
   });
-  it('Should render with button, which name equals Completed', () => {
+  it('Should render with button named Completed', () => {
     render(<Input />);
     expect(screen.getByRole('button', /Completed/i)).toBeInTheDocument();
   });
-  it('Should render with button, which name equals Clear completed', () => {
+  it('Should render with button named Clear completed', () => {
     render(<Input />);
     expect(screen.getByRole('button', /Clear completed/i)).toBeInTheDocument();
   });

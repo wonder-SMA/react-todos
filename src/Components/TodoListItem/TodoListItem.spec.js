@@ -1,7 +1,7 @@
+import React from 'react';
 import { mdiCheckboxBlankCircleOutline, mdiCheckboxMarkedCircleOutline } from '@mdi/js';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 
 import { StoreContext } from '../../index';
 import TodosStore from '../../store';
@@ -62,7 +62,7 @@ describe('TodoListItem', () => {
     );
     expect(screen.getByText('Buy groceries')).not.toHaveStyle({ textDecoration: 'line-through' });
   });
-  it('Should render with mdiCheckboxMarkedCircleOutline Icon, which appears after clicking', () => {
+  it('Should render with mdiCheckboxMarkedCircleOutline Icon, which appears after clicking', async () => {
     render(
       <StoreContext.Provider value={{
         store: new TodosStore()
@@ -73,7 +73,7 @@ describe('TodoListItem', () => {
       </StoreContext.Provider>
     );
     const presentation = screen.getByRole('presentation');
-    userEvent.click(presentation);
+    await userEvent.click(presentation);
     expect(presentation).toMatchInlineSnapshot(`
     <svg
       role="presentation"
@@ -87,7 +87,7 @@ describe('TodoListItem', () => {
     </svg>
     `);
   });
-  it('Should render with text with the text-decoration property equals line-through, which appears after clicking', () => {
+  it('Should render with text with the text-decoration property equals line-through, which appears after clicking', async () => {
     render(
       <StoreContext.Provider value={{
         store: new TodosStore()
@@ -98,7 +98,7 @@ describe('TodoListItem', () => {
       </StoreContext.Provider>
     );
     const presentation = screen.getByRole('presentation');
-    userEvent.click(presentation);
+    await userEvent.click(presentation);
     expect(screen.getByText('Buy groceries')).toHaveStyle({ textDecoration: 'line-through' });
   });
 });
